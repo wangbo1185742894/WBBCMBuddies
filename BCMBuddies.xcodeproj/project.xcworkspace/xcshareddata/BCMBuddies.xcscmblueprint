@@ -1,0 +1,24 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "d527bfd2-f195-11dd-984d-ab748d24aa7e++1904" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "d527bfd2-f195-11dd-984d-ab748d24aa7e++1904" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D65F619A-FD78-4473-A3DD-F5E260D63FBE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "d527bfd2-f195-11dd-984d-ab748d24aa7e++1904" : "12334\/BCMBuddies\/BCMBuddies\/BCMLib\/minizip\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BCMBuddies",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BCMBuddies\/BCMBuddies.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/ziparchive.googlecode.com\/svn",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "d527bfd2-f195-11dd-984d-ab748d24aa7e++1904"
+    }
+  ]
+}

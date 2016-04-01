@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1605" minimumToolsVersion="Automatic">
+    <entity name="BCMApp" representedClassName="BCMApp" syncable="YES">
+        <attribute name="deptId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptLat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptLogo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptLon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forcepush" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isarea" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logohosturl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visiblelevel" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="app_folder" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BCMFolder" syncable="YES"/>
+        <relationship name="app_store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BCMStore" syncable="YES"/>
+    </entity>
+    <entity name="BCMContent" representedClassName="BCMContent" syncable="YES">
+        <attribute name="aboutauthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="album" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="app_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="app_version" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="area" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="caid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="catalog" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="defaultopenlink" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="description1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="director" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloadsetting" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloadurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="file" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filehosturl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileLocalPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finExprevenuelabel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finExprevenuerange" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finExprevenuevalue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finProductcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finProductstatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finTermlabel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finTermvalue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="folderId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fundPurelabel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fundPurevalue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fundRoselabel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fundRosevalue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fundTag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goldPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasads" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imgeType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAdd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iszip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logohosturl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="packagename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="page_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productarea" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="releasemethodfilter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resfiles" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resource_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servername" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servIntroduce" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servLevel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servOnduty" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servPosition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servRespbusiness" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="servWorkyears" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="systemrequire" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usecount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="validdatebegin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="validdateend" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="versioncode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="versionname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visiblelevel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wd_operator" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="content_folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BCMFolder" syncable="YES"/>
+    </entity>
+    <entity name="BCMContentRes" representedClassName="BCMContentRes" syncable="YES">
+        <attribute name="contentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentResPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentResUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="file" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filehosturl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastmodify" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="usage" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="BCMFolder" representedClassName="BCMFolder" syncable="YES">
+        <attribute name="appId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="defaultopen" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deptId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="extinfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="folderlevel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foldertypename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forcepush" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localcontent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logohosturl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="releasemethodfilter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visiblelevel" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="folder_app" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BCMApp" syncable="YES"/>
+        <relationship name="folder_content" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BCMContent" syncable="YES"/>
+    </entity>
+    <entity name="BCMStore" representedClassName="BCMStore" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logohosturl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="store_app" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BCMApp" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BCMApp" positionX="-54" positionY="18" width="128" height="300"/>
+        <element name="BCMContent" positionX="-18" positionY="36" width="128" height="1185"/>
+        <element name="BCMContentRes" positionX="0" positionY="171" width="128" height="180"/>
+        <element name="BCMFolder" positionX="-36" positionY="27" width="128" height="345"/>
+        <element name="BCMStore" positionX="-63" positionY="-18" width="128" height="120"/>
+    </elements>
+</model>
