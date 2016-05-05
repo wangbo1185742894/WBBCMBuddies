@@ -192,13 +192,15 @@
     WDCustemButton *wd_button = (WDCustemButton *)sender;
     BCMContent *wd_content = [self.ui_videosArray objectAtIndex:wd_button.m_index];
     NSString *wd_videoString;
-    if([wd_appDelegate.m_isTFI isEqualToString:@"YES"])
+    if([wd_appDelegate isTIFServerInfo])
     {
+         [wd_appDelegate initURLPath:[NSString stringWithFormat:@"%@",[wd_appDelegate isTIFServerInfo]==YES?@"YES":@"NO"]];
         NSString *wd_tfiUrlPath = [wd_appDelegate.m_urlPath stringByAppendingFormat:@"%@/%@/%@/",wd_appDelegate.m_appId,wd_content.folderId,wd_content.id];
         wd_videoString = [wd_tfiUrlPath stringByAppendingString:wd_content.file];
     }
     else
     {
+        [wd_appDelegate initURLPath:[NSString stringWithFormat:@"%@",[wd_appDelegate isTIFServerInfo]==YES?@"YES":@"NO"]];
         wd_videoString = [wd_appDelegate.m_urlPath stringByAppendingString:wd_content.filehosturl];
     }
     NSURL *wd_videoURL = [NSURL URLWithString:wd_videoString];
@@ -219,7 +221,7 @@
     WDCustemButton *wd_button = (WDCustemButton *)sender;
     BCMContent *wd_content = [self.ui_audiosArray objectAtIndex:wd_button.m_index];
     NSString *wd_videoString;
-    if([wd_appDelegate.m_isTFI isEqualToString:@"YES"])
+    if([wd_appDelegate isTIFServerInfo])
     {
         NSString *wd_tfiUrlPath = [wd_appDelegate.m_urlPath stringByAppendingFormat:@"%@/%@/%@/",wd_appDelegate.m_appId,wd_content.folderId,wd_content.id];
         wd_videoString = [wd_tfiUrlPath stringByAppendingString:wd_content.file];

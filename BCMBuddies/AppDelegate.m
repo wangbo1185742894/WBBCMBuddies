@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.m
 //  BCMBuddies
@@ -55,7 +56,7 @@
         }
         
         for(p=buf; p<buf+l; p+=rt->rtm_msglen) {
-            rt = (struct rt_msghdr *)p;
+            rt = (struct rt_msghdr_c *)p;
             sa = (struct sockaddr *)(rt + 1);
             for(i=0; i<RTAX_MAX; i++)
             {
@@ -88,12 +89,22 @@
     }
     return address;
 }
+
 - (void)initURLPath:(NSString *)TFI
 {
     if([TFI isEqualToString:@"YES"])
     {
         NSString *wd_ipString = [self getGatewayIPAddress];
+        NSString *ipHeader = [[wd_ipString  componentsSeparatedByString:@"."] firstObject];
+        while (!
+               [ipHeader isEqualToString:@"192"]) {
+            wd_ipString = [self getGatewayIPAddress];
+            ipHeader = [[wd_ipString  componentsSeparatedByString:@"."] firstObject];
+        }
         self.m_urlPath = [NSString stringWithFormat:@"http://%@%@/",wd_ipString,@":12202"];
+        
+        
+        
     }
     else
     {

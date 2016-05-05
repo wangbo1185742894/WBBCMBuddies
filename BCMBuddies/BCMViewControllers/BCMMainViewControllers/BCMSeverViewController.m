@@ -40,6 +40,34 @@
     [super viewDidLoad];
     self.m_tabBarView.m_delegate = self;
     AppDelegate *wd_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    AppDelegate *wd_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if([wd_appDelegate isTIFServerInfo])
+    {
+        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"tab_for_tifi_icon.png"] forState:UIControlStateNormal];
+        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"tab_for_tifi_icon.png"] forState:UIControlStateHighlighted];
+        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"tab_for_tifi_icon.png"] forState:UIControlStateSelected];
+//        [wd_appDelegate initURLPath:@"YES"];
+//        [wd_appDelegate showFirstViewController];
+    }
+    else
+    {
+        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"no_tifi_sever_icon.png"] forState:UIControlStateNormal];
+        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"no_tifi_sever_icon.png"] forState:UIControlStateHighlighted];
+        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"no_tifi_sever_icon.png"] forState:UIControlStateSelected];
+    }
+    
     if([wd_appDelegate isTIFServerInfo])
     {
         self.ui_button1.enabled = YES;
@@ -83,32 +111,6 @@
     self.ui_label3.text = @"官方wifi";
     self.ui_label4.text = @"扫一扫";
     self.ui_label5.text = @"现场服务";
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    AppDelegate *wd_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if([wd_appDelegate isTIFServerInfo])
-    {
-        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"tab_for_tifi_icon.png"] forState:UIControlStateNormal];
-        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"tab_for_tifi_icon.png"] forState:UIControlStateHighlighted];
-        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"tab_for_tifi_icon.png"] forState:UIControlStateSelected];
-        [wd_appDelegate initURLPath:@"YES"];
-        [wd_appDelegate showFirstViewController];
-    }
-    else
-    {
-        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"no_tifi_sever_icon.png"] forState:UIControlStateNormal];
-        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"no_tifi_sever_icon.png"] forState:UIControlStateHighlighted];
-        [self.m_tabBarView.ui_button2 setImage:[UIImage imageNamed:@"no_tifi_sever_icon.png"] forState:UIControlStateSelected];
-    }
 
     BCMRootViewController *mu_rootViewController = (BCMRootViewController *)[[self parentViewController] parentViewController];
     mu_rootViewController.m_tabBarView.frame = CGRectMake(0,SCREENHEIGHT-70,SCREENWIDTH,70);

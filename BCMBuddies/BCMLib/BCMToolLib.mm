@@ -1,3 +1,4 @@
+
 //
 //  BCMToolLib.m
 //  BCMBuddies
@@ -661,9 +662,9 @@ int base32Encode(char* dest, const void* src, int size)
 }
 char (*bssid2Mac(const char *s))[6]
 {
-    if (strlen(s) != 17) {
-        return NULL;
-    }
+//    if (strlen(s) != 17) {
+//        return NULL;
+//    }
     //__android_log_print(6, "C_Interface", "::bssid2mac::in=%s", s);
     char (*out)[6];
     out = (char (*)[6]) malloc(6 * sizeof(char));
@@ -747,8 +748,33 @@ char (*makeMacCheck(char *inMac, int bytecount))[6] { //返回的数组最大是
     
     return returnbyte;
 }
+
++(NSString *)testIP:(NSString *)testStr{
+    NSMutableArray *ipResultArray = [NSMutableArray arrayWithCapacity:0];
+    NSString *str;
+    NSMutableString *ipStr;
+    NSArray*ipArray = [testStr componentsSeparatedByString:@":"];
+    for (NSString *itemStr in ipArray) {
+        if (itemStr.length==1) {
+            str = [NSString stringWithFormat:@"0%@",itemStr];
+        }else{
+        
+            str = itemStr;
+        }
+        [ipResultArray addObject:str];
+    }
+    
+    ipStr = [[ipResultArray firstObject] mutableCopy];
+    for (int i = 1; i<ipArray.count; i++) {
+        [ipStr appendString:[NSString stringWithFormat:@":%@",ipResultArray[i]]];
+    }
+    return ipStr;
+
+}
+
 +(BOOL)NativeCheckTSSID:(NSString *)Ssid MacID:(NSString *)Mac
 {
+    Mac = [self testIP:Mac];
     if (Ssid == nil || Mac == nil) {
         return NO;
     }
@@ -776,12 +802,12 @@ char (*makeMacCheck(char *inMac, int bytecount))[6] { //返回的数组最大是
     char TPwd[32];
     memset((void *) TPwd, 0, 32);
     int TStoreID;
-    int TAppID;
-    int TType;
+    long long TAppID;
+    long long TType;
     int TPwdType;
     int CheckTType = 0;
     int RemoveTType = 0;
-    int APPID = 8388609;
+   long int APPID = 8388609;
     // 客户端模拟的传输器SSID长度至少为14个字符
     
     // 客户端模拟的传输器SSID后13位字符必须符合xaonlybase32编码规范
@@ -851,8 +877,8 @@ char (*makeMacCheck(char *inMac, int bytecount))[6] { //返回的数组最大是
      * 标准传输器类型区为1，
      * 手机客户端模拟的传输器类型区为2,
      * 电脑模拟的传输器类型区为3 */
-    TType = (cOssid[1] & 0xF0) / 0x10;
-    if (TType < 1 || TType > 3) {
+    TType = ([self byte2int:cOssid[1]]  & 0xF0) / 0x10;
+    if (TType < 1 || TType > 4) {
         return NO;
     }
     //如果不是查找所有类型传输器
@@ -888,11 +914,12 @@ char (*makeMacCheck(char *inMac, int bytecount))[6] { //返回的数组最大是
     }
     // 取出APPID
     // 4,5,6,7共4个字节是APPID
-    TAppID = cOssid[4] * 16777216 + cOssid[5] * 65536
-    + cOssid[6] * 256 + cOssid[7];
-    
+    TAppID = [self byte2int:cOssid[4]]  * 16777216 + [self byte2int:cOssid[5]]  * 65536
+    + [self byte2int:cOssid[6]] * 256 +[self byte2int:cOssid[7]] ;
+//    TAppID =8388609;
     //APPID的高两个字节是商家ID-StoreID
-    TStoreID = cOssid[4] * 256 + cOssid[5];
+    TStoreID = [self byte2int:cOssid[4]] * 256 +[self byte2int:cOssid[5]] ;
+    
     if (!(APPID == 0)) { // 如果输入的appid为0，则表示查找所有T
         if (TAppID != APPID) {
             return NO;
@@ -973,6 +1000,14 @@ char (*makeMacCheck(char *inMac, int bytecount))[6] { //返回的数组最大是
     //        int WebPort = 12202;
     //        xaonlyOssidMpT.WebPort = WebPort;
     //    }
+}
+
++(int )byte2int:(Byte)b{
+    if (b<0) {
+       return  b= b+256;
+    }else{
+        return b;
+    }
 }
 
 @end

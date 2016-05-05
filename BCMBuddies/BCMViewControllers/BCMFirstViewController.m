@@ -1,3 +1,4 @@
+
 //
 //  BCMFirstViewController.m
 //  BCMBuddies
@@ -58,18 +59,32 @@
     self.m_parseIndex = index;
     NSDictionary *wd_dic = [self.m_extFileArray objectAtIndex:index];
     NSString *wd_extinfo = [wd_dic objectForKey:@"downloadFile"];
+    
+     AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+    if ([wd_appDelegate.m_isTFI isEqualToString:@"YES"]) {
+        NSString *temp = [[wd_extinfo componentsSeparatedByString:@"appinfo_cache"] firstObject];
+        wd_extinfo = [NSString stringWithFormat:@"%@%@",temp,@"extinfo.xml"];
+    }
+    
     NSString *wd_savePath = [wd_dic objectForKey:@"saveFile"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [BCMToolLib downloadFileWithOption:wd_extinfo savedPath:wd_savePath
                       downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                          
+                         
                           NSData *data = [[NSData alloc]initWithContentsOfFile:wd_savePath];
                           NSXMLParser *wd_parser = [[NSXMLParser alloc] initWithData:data];
                           wd_parser.delegate = self;
                           if([wd_parser parse]){
                           }else{
                           }
+//                          <NSHTTPURLResponse: 0x1377cf8c0> { URL: http://192.0.0.1:12202/8388609/2456/appinfo_cache/1782/8388609/2456/extinfo.xml } { status code: 404, headers {
+//                              "Accept-Ranges" = bytes;
+//                              "Content-Type" = "text/html";
+//                              Date = "Wed, 4 May 2016 05:10:43 GMT";
+//                          } }
                       } downloadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                          
+                          NSLog(@"下载失败");
                       } progress:^(float progress) {
                       }];
     });
@@ -110,16 +125,27 @@
         wd_appPath = [BCMToolLib getCacheFolderPath:wd_appDelegate.m_appId];
     }
     //93ec7d0f72ac511b64719dc71c552f85
-    NSString *wd_downloadPath = [NSString stringWithFormat:@"%@%@%@%@%@",wd_appDelegate.m_urlPath,@"AppForClient/GetPackageCiV2?userid=1351&appid=",wd_appDelegate.m_appId,@"&timestamp=1&key=",wd_keyValue,nil];
+    
+    NSString *wd_downloadPath;
+    if ([wd_appDelegate .m_isTFI isEqualToString:@"NO"]) {
+          wd_downloadPath = [NSString stringWithFormat:@"%@%@%@%@%@",wd_appDelegate.m_urlPath,@"AppForClient/GetPackageCiV2?userid=1351&appid=",wd_appDelegate.m_appId,@"&timestamp=1&key=",wd_keyValue,nil];
+    }else{
+        wd_downloadPath = [NSString stringWithFormat:@"%@%@/%@",wd_appDelegate.m_urlPath,wd_appDelegate.m_appId,@"packageci.zip"];
+    
+    }
+   
     [BCMToolLib downloadFileWithOption:wd_downloadPath savedPath:wd_savePath
                  downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                      ZipArchive *za = [[ZipArchive alloc] init];
+                     
                      if ([za UnzipOpenFile:wd_savePath Password:wd_password]) {
                          BOOL ret = [za UnzipFileTo:wd_appPath overWrite:YES];
                          if (NO == ret){}
                          [za UnzipCloseFile];
                          NSString *xmlFilePath = [wd_appPath stringByAppendingPathComponent:@"packageci.xml"];
                          NSData *data = [[NSData alloc]initWithContentsOfFile:xmlFilePath];
+                         
+                         NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
                          NSXMLParser *wd_parser = [[NSXMLParser alloc]initWithData:data];
                          wd_parser.delegate = self;
                          self.m_isFirstParse = YES;

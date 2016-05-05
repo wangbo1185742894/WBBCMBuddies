@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2D12B21CD9C16600B1AC63 /* packageci.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2D2D12B11CD9C16600B1AC63 /* packageci.xml */; };
 		AC098E371C93EADC00604552 /* BCMScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC098E351C93EADC00604552 /* BCMScanViewController.m */; };
 		AC098E381C93EADC00604552 /* BCMScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC098E361C93EADC00604552 /* BCMScanViewController.xib */; };
 		AC098E3C1C942F7C00604552 /* BCMZouShiView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC098E3A1C942F7C00604552 /* BCMZouShiView.m */; };
@@ -543,6 +544,7 @@
 
 /* Begin PBXFileReference section */
 		2D1D74491CAD4BC700781566 /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
+		2D2D12B11CD9C16600B1AC63 /* packageci.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = packageci.xml; sourceTree = "<group>"; };
 		AC098E341C93EADC00604552 /* BCMScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCMScanViewController.h; sourceTree = "<group>"; };
 		AC098E351C93EADC00604552 /* BCMScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCMScanViewController.m; sourceTree = "<group>"; };
 		AC098E361C93EADC00604552 /* BCMScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BCMScanViewController.xib; sourceTree = "<group>"; };
@@ -1848,6 +1850,7 @@
 				ACE76FA21C72C371004CBA1D /* Info.plist */,
 				ACE76F9A1C72C371004CBA1D /* BCMBuddies.xcdatamodeld */,
 				ACE76F8E1C72C371004CBA1D /* Supporting Files */,
+				2D2D12B11CD9C16600B1AC63 /* packageci.xml */,
 			);
 			path = BCMBuddies;
 			sourceTree = "<group>";
@@ -2022,7 +2025,7 @@
 				TargetAttributes = {
 					ACE76F8A1C72C371004CBA1D = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 8ZW6TD2T4J;
+						DevelopmentTeam = 6RL39LH4U4;
 					};
 				};
 			};
@@ -2053,6 +2056,7 @@
 				AC78ED8E1C744B82008D3967 /* circle_green_icon@3x.png in Resources */,
 				AC78EEA51C747265008D3967 /* BCMAppInfoViewController.xib in Resources */,
 				AC89B2781CA10E6900A002CA /* default_image_icon11@2x.png in Resources */,
+				2D2D12B21CD9C16600B1AC63 /* packageci.xml in Resources */,
 				AC78EE491C744B82008D3967 /* today_tehui_back_image.png in Resources */,
 				AC89B2731CA10E6900A002CA /* default_image_icon9@3x.png in Resources */,
 				AC78EE081C744B82008D3967 /* no_selected_icon@2x.png in Resources */,
@@ -2699,7 +2703,7 @@
 				INFOPLIST_FILE = BCMBuddies/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dwg.fastview.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = bogeaini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2719,7 +2723,7 @@
 				INFOPLIST_FILE = BCMBuddies/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dwg.fastview.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = bogeaini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7af52a36-f28d-4110-890e-c3c3e9e08038";
 			};

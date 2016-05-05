@@ -75,7 +75,7 @@
 
 - (IBAction)backButtonAction:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)phoneCallButtonAction:(id)sender
