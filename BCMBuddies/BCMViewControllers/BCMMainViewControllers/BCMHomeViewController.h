@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BCMHomeViewController : UIViewController
+#import "BaseViewController.h"
+@interface BCMHomeViewController : BaseViewController
 
 @end

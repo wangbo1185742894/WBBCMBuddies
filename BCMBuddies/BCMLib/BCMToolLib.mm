@@ -32,6 +32,11 @@ static const unsigned char BASE32_DECODE_TABLE[0x80] = { 0xFF, 0xFF, 0xFF, 0xFF,
     0x0D, 0x0E, 0x0F, 0xFF, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF };
 
+@interface BCMToolLib ()
+
+
+
+@end
 @implementation BCMToolLib
 + (NSString *)getCurrentTime
 {
@@ -1009,5 +1014,7 @@ char (*makeMacCheck(char *inMac, int bytecount))[6] { //返回的数组最大是
         return b;
     }
 }
+
+
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMDownloadViewController : UIViewController
+@interface BCMDownloadViewController : BaseViewController
 
 @end

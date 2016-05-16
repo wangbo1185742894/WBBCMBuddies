@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "MBProgressHUD.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -23,6 +24,10 @@
 @property (nonatomic,strong) NSString *m_isTFI;
 
 @property (nonatomic,assign) BOOL m_isFull;
+
+-(void)alterView:(UIView*)view andTitle:(NSString*)title isGround:(BOOL)isGround;
+-(void)hideWithLong:(NSInteger)time;
+-(void)hide;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

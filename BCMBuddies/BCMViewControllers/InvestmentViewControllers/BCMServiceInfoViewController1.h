@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BCMContent.h"
 
-@interface BCMServiceInfoViewController1 : UIViewController
+@interface BCMServiceInfoViewController1 : BaseViewController
 
 @property (nonatomic,strong) BCMContent *m_serviceInfoContent;
 

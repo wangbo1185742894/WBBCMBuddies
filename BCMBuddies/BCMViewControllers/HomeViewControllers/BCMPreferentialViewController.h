@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMPreferentialViewController : UIViewController
+@interface BCMPreferentialViewController : BaseViewController
 
 @end

@@ -18,7 +18,7 @@
 
 @end
 
-@interface BCMSeverViewController : UIViewController
+@interface BCMSeverViewController : BaseViewController
 
 @property (nonatomic, unsafe_unretained) id<BCMSeverViewControllerDelegate> m_delegate;
 

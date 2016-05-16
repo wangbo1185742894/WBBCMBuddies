@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMAppInfoViewController : UIViewController
+@interface BCMAppInfoViewController : BaseViewController
 
 @end

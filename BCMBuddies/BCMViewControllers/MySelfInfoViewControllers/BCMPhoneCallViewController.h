@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMPhoneCallViewController : UIViewController
+@interface BCMPhoneCallViewController : BaseViewController
 
 @end

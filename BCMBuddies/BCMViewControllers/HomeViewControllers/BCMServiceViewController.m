@@ -396,6 +396,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"业务向导";
     self.ui_contentTrailingConstraint.constant = SCREENWIDTH - 1;
     self.ui_contentTrailingConstraint1.constant = SCREENWIDTH - 1;
     self.ui_contentBottomConstraint.constant = SCREENHEIGHT;
@@ -418,11 +419,11 @@
     UINib *mu_cellNib2 = [UINib nibWithNibName:@"BCMServiceListCell" bundle:nil];
     [self.ui_serviceCollectionView registerNib:mu_cellNib2 forCellWithReuseIdentifier:@"BCMServiceListCell"];
 //    赞无服务  毙掉这段
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self getBankCounterinfo:[self getFolderInfoForType:@"bank_counter"]];
-//        [self getBankMobileserviceinfo:[self getFolderInfoForType:@"bank_mobileservice"]];
-////        [self getCustomerServiceInfo:[self getFolderInfoForType:@"customer_service"]];
-//    });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self getBankCounterinfo:[self getFolderInfoForType:@"bank_counter"]];
+        [self getBankMobileserviceinfo:[self getFolderInfoForType:@"bank_mobileservice"]];
+//        [self getCustomerServiceInfo:[self getFolderInfoForType:@"customer_service"]];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

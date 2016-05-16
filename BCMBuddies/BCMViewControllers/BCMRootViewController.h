@@ -11,8 +11,8 @@
 #import "BCMHomeViewController.h"
 #import "BCMSeverViewController.h"
 #import "BCMMySelfViewController.h"
-
-@interface BCMRootViewController : UITabBarController
+#import "BaseViewController.h"
+@interface BCMRootViewController :BaseViewController
 
 @property (nonatomic,strong) BCMTabBarView *m_tabBarView;
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMServiceViewController : UIViewController
+@interface BCMServiceViewController : BaseViewController
 
 @end

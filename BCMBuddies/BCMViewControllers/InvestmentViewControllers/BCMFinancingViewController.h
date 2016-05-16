@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMFinancingViewController : UIViewController
+@interface BCMFinancingViewController : BaseViewController
 
 @end

@@ -240,15 +240,6 @@
                                 <view clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SR-tc-7rp">
                                     <rect key="frame" x="12" y="543" width="283" height="74"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="娱乐天地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6z-V7-NCR">
-                                            <rect key="frame" x="13" y="17" width="200" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="2fM-QP-Jm0"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.28235294119999998" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recreation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hu-Bm-j7s">
                                             <rect key="frame" x="13" y="37" width="200" height="20"/>
                                             <constraints>
@@ -265,6 +256,15 @@
                                                 <constraint firstAttribute="width" constant="41" id="Vzq-14-jNJ"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="娱乐天地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6z-V7-NCR">
+                                            <rect key="frame" x="13" y="17" width="200" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="2fM-QP-Jm0"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.28235294119999998" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="6Ng-2X-TDP" secondAttribute="trailing" constant="18" id="7Jv-T1-03S"/>
@@ -452,6 +452,7 @@
                 <constraint firstAttribute="trailing" secondItem="zfM-AQ-Yrj" secondAttribute="trailing" id="bMR-h0-NII"/>
                 <constraint firstItem="zfM-AQ-Yrj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qR2-j1-tVz"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="140" y="159"/>
         </view>
     </objects>

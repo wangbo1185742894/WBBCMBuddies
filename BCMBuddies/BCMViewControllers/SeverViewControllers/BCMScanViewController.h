@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMScanViewController : UIViewController
+@interface BCMScanViewController : BaseViewController
 
 @end

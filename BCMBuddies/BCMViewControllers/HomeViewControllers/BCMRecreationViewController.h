@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMRecreationViewController : UIViewController
+@interface BCMRecreationViewController : BaseViewController
 
 @end

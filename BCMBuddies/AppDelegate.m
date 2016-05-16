@@ -18,7 +18,9 @@
 #import <sys/sysctl.h>
 #import <netinet/in.h>
 #import <arpa/inet.h>
-#import "route.h"      /*the very same from google-code*/
+#import "route.h"    /*the very same from google-code*/
+#import "BackMenuViewController.h"
+
 
 #define CTL_NET         4               /* network, see socket.h */
 
@@ -26,7 +28,7 @@
 ((a) > 0 ? (1 + (((a) - 1) | (sizeof(long) - 1))) : sizeof(long))
 
 @interface AppDelegate ()
-
+@property(nonatomic,strong)MBProgressHUD *hud;
 @end
 
 @implementation AppDelegate
@@ -127,8 +129,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor clearColor];
+    [self.window makeKeyAndVisible];
+     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}]; 
+    self.window.backgroundColor = [UIColor whiteColor];
     NSUserDefaults *wd_userDefaults = [NSUserDefaults standardUserDefaults];
+    UINavigationBar *bar = [UINavigationBar appearance];
+    bar.barTintColor = RGBA(27, 120, 216, 1.0);
     NSDictionary *wd_dic = [wd_userDefaults objectForKey:@"lastInfo"];
     if(wd_dic)
     {
@@ -150,7 +156,7 @@
         }
         [self showFirstViewController];
     }
-    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
@@ -297,11 +303,21 @@
 
 - (void)showMainViewController
 {
-    BCMRootViewController *wd_rootViewController = [[BCMRootViewController alloc] initWithNibName:@"BCMRootViewController" bundle:nil];
+    
+    BackMenuViewController *backMenuVC = [[BackMenuViewController alloc]init];
+
+    self.window.rootViewController =  backMenuVC;
+    
+    
+    BCMRootViewController *wd_rootViewController = [[BCMRootViewController alloc] init];
     BCMNavigationController *wd_navigationController = [[BCMNavigationController alloc] initWithRootViewController:wd_rootViewController];
     [wd_navigationController setNavigationBarHidden:YES animated:NO];
     [wd_navigationController setToolbarHidden:YES animated:NO];
-    self.window.rootViewController = wd_navigationController;
+    
+    
+    [backMenuVC.view addSubview:wd_navigationController.view];
+    [backMenuVC addChildViewController:wd_navigationController];
+    
 }
 
 - (void)showFirstViewController
@@ -311,6 +327,29 @@
     [wd_navigationController setNavigationBarHidden:YES animated:NO];
     [wd_navigationController setToolbarHidden:YES animated:NO];
     self.window.rootViewController = wd_navigationController;
+}
+
+-(void)alterView:(UIView*)view andTitle:(NSString*)title isGround:(BOOL)isGround{
+    self.hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    
+    // Configure for text only and offset down
+    self. hud.mode = MBProgressHUDModeText;
+    self.hud.dimBackground = isGround;
+    self.hud.margin = 10.f;
+    self.hud.removeFromSuperViewOnHide = YES;
+    self.hud.label.text  = title;
+    //    hud  不会阻断 用户交互
+    self.hud.userInteractionEnabled = NO;
+}
+
+-(void)hide{
+    
+    [self.hud hideAnimated:YES];
+}
+
+-(void)hideWithLong:(NSInteger)time{
+    
+    [self.hud hideAnimated:YES afterDelay:time];
 }
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMMySelfViewController : UIViewController
+@interface BCMMySelfViewController : BaseViewController
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMFundViewController : UIViewController
+@interface BCMFundViewController : BaseViewController
 
 @end

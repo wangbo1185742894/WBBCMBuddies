@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMDrawingNumberViewController : UIViewController
+@interface BCMDrawingNumberViewController : BaseViewController
 
 @end

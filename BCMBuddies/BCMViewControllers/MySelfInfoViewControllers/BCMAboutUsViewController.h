@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMAboutUsViewController : UIViewController
+@interface BCMAboutUsViewController : BaseViewController
 
 @end

@@ -61,6 +61,8 @@
 
 - (void)getBankImgeInfo:(NSString *)folderID
 {
+    
+   
     [self.m_newsArray removeAllObjects];
     if(folderID)
     {
@@ -205,8 +207,8 @@
 {
     [super viewWillAppear:animated];
     BCMRootViewController *mu_rootViewController = (BCMRootViewController *)[[self parentViewController] parentViewController];
-    mu_rootViewController.m_tabBarView.frame = CGRectMake(0,SCREENHEIGHT-70,SCREENWIDTH,70);
-    mu_rootViewController.m_tabBarView.hidden = NO;
+//    mu_rootViewController.m_tabBarView.frame = CGRectMake(0,SCREENHEIGHT-70,SCREENWIDTH,70);
+//    mu_rootViewController.m_tabBarView.hidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

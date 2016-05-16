@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BCMDefineFile.h"
-@interface BCMInfoViewController : UIViewController
+@interface BCMInfoViewController : BaseViewController
 
 @property (nonatomic,assign) BOOL m_showServer;
 @property (nonatomic,strong) NSString *m_urlString;
 @property (nonatomic,strong) BCMContent *m_content;
+
 
 @end

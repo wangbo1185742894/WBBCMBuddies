@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BCMGoldViewController : UIViewController
+@interface BCMGoldViewController : BaseViewController
 
 @end
