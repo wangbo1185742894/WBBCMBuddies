@@ -15,6 +15,7 @@
 
 @interface BCMRecreationViewController ()<UITableViewDataSource,UITableViewDelegate,BCMHeadViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UISwitch *swiTifi;
 
 @property (nonatomic,strong) IBOutlet BCMHeadView *ui_headView;
 @property (nonatomic,weak) IBOutlet UITableView *ui_tableView1;
@@ -42,6 +43,8 @@
     if(folderID)
     {
         AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+        wd_appDelegate.m_appId =[NSString stringWithFormat:@"%@",self.user.curBank.appid] ;
+        wd_appDelegate.m_deptId = [NSString stringWithFormat:@"%@",self.user.curBank.deptid];
         NSManagedObjectContext *context = wd_appDelegate.managedObjectContext;
         NSEntityDescription *wd_entityDescription = [NSEntityDescription entityForName:@"BCMContent" inManagedObjectContext:context];
         NSFetchRequest *request = [NSFetchRequest new];
@@ -84,6 +87,13 @@
         }
     }
 
+}
+
+
+- (IBAction)ActionSelectWIfi:(UISwitch *)sender {
+    if (sender.isOn) {
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"prefs:root=WIFI"]];
+    }
 }
 //- (void)getFolderInfoForType:(NSString *)type
 //{
@@ -169,6 +179,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self.swiTifi setOn:[self.wd_delegate isTIFServerInfo]];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     delegate.m_isFull = NO;
 }

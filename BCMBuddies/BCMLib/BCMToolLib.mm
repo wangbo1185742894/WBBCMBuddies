@@ -1,4 +1,5 @@
 
+
 //
 //  BCMToolLib.m
 //  BCMBuddies
@@ -99,8 +100,9 @@ static const unsigned char BASE32_DECODE_TABLE[0x80] = { 0xFF, 0xFF, 0xFF, 0xFF,
 }
 + (NSString *)getAppFolderPath:(NSString *)appId
 {
+    
     NSString *documents = [BCMToolLib getMainFolderPath];
-    NSString *wd_path = [documents stringByAppendingPathComponent:appId];
+    NSString *wd_path = [documents stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",appId]];
     NSFileManager *wk_manager = [NSFileManager defaultManager];
     BOOL wk_isExist,wk_isDirectory;
     wk_isExist = [wk_manager fileExistsAtPath:wd_path isDirectory:&wk_isDirectory];
@@ -278,7 +280,7 @@ static const unsigned char BASE32_DECODE_TABLE[0x80] = { 0xFF, 0xFF, 0xFF, 0xFF,
     AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
     NSString *wd_pathString;
     NSString *wd_urlStringValue;
-    if([wd_appDelegate.m_isTFI isEqualToString:@"YES"])
+    if([wd_appDelegate isTIFServerInfo])
     {
         wd_urlStringValue = [wd_appDelegate.m_urlPath stringByAppendingFormat:@"%@/%@/%@/",wd_appDelegate.m_appId,content.folderId,content.id];
         wd_pathString = content.file;
@@ -362,6 +364,7 @@ static const unsigned char BASE32_DECODE_TABLE[0x80] = { 0xFF, 0xFF, 0xFF, 0xFF,
             wd_infoViewController.m_urlString = wd_picString;
             wd_infoViewController.m_content = content;
             wd_infoViewController.m_showServer = show;
+            wd_infoViewController.isSize = YES;
             [nav pushViewController:wd_infoViewController animated:YES];
             [wd_hud hideAnimated:YES];
         }

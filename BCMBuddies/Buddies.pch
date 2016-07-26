@@ -22,6 +22,8 @@
 
 
 #import "BaseViewController.h"
+#import "GlobalUser.h"
+#import "UIView+MJExtension.h"
 
 
 

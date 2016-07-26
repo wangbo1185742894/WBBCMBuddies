@@ -97,7 +97,7 @@
     self.ui_headImageView.defaultImage = [UIImage imageNamed:@"default_image_icon4.png"];
     AppDelegate *wd_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *wd_picString;
-    if([wd_appDelegate.m_isTFI isEqualToString:@"YES"])
+    if([wd_appDelegate isTIFServerInfo])
     {
         NSString *wd_tfiUrlPath = [wd_appDelegate.m_urlPath stringByAppendingFormat:@"%@/%@/%@/",wd_appDelegate.m_appId,self.m_serviceInfoContent.folderId,self.m_serviceInfoContent.id];
         wd_picString = [wd_tfiUrlPath stringByAppendingString:self.m_serviceInfoContent.logo];
@@ -221,7 +221,7 @@
     wd_headImageView.defaultImage = [UIImage imageNamed:@"default_image_icon4.png"];
     AppDelegate *wd_appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *wd_picString;
-    if([wd_appDelegate.m_isTFI isEqualToString:@"YES"])
+    if([wd_appDelegate isTIFServerInfo])
     {
         NSString *wd_tfiUrlPath = [wd_appDelegate.m_urlPath stringByAppendingFormat:@"%@/%@/%@/",wd_appDelegate.m_appId,wd_content.folderId,wd_content.id];
         wd_picString = [wd_tfiUrlPath stringByAppendingString:wd_content.logo];

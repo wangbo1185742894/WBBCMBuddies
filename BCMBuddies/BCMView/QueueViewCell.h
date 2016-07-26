@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface QueueViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *labNoTime;
 @property (weak, nonatomic) IBOutlet UILabel *labWindowNumber;
 @property (weak, nonatomic) IBOutlet UILabel *labSerName;
 @property (weak, nonatomic) IBOutlet UILabel *labSerIng;

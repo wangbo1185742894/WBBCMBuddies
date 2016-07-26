@@ -8,6 +8,7 @@
 
 #import "BackMenuViewController.h"
 #import "BCMToolLib.h"
+#import "BCMAboutUsViewController.h"
 
 @interface BackMenuViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *labCache;
@@ -19,7 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+       UISwipeGestureRecognizer *swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGesture:)];
+    swipeGestureLeft.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeGestureLeft];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *wd_userPath = [BCMToolLib getMainFolderPath];
@@ -29,6 +32,20 @@
         self.labCache.text = [NSString stringWithFormat:@"%0.2fMB",wd_fileSize];
     });
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)swipeGesture:(id)sender
+{
+    
+    UISwipeGestureRecognizer *swipe = sender;
+    
+    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft)
+        
+    {
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center postNotificationName:@"rootViewMoveLeft" object:nil userInfo:nil];
+     
+    }
 }
 
 - (long long)folderSizeAtPath:(NSString *)path{
@@ -87,6 +104,11 @@
     }
 }
 - (IBAction)actionAbout:(id)sender {
+    
+    BCMAboutUsViewController *wd_aboutUsViewController = [[BCMAboutUsViewController alloc] initWithNibName:@"BCMAboutUsViewController" bundle:nil];
+    
+    [self presentViewController:wd_aboutUsViewController animated:YES completion:nil];
+//    [self pushViewController:wd_aboutUsViewController animated:YES];
 }
 - (IBAction)actionUpdata:(UIButton *)sender {
 }

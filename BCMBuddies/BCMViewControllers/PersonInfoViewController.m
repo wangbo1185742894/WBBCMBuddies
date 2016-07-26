@@ -76,7 +76,7 @@
         wd_servPosition = @"";
     }
     self.labName.text = [NSString stringWithFormat:@"%@",wd_nameString];
-    self.labPosition.text = [NSString stringWithFormat:@"%@",wd_servPosition];
+    
     
     self.labServce.text = self.modelContent.servRespbusiness;
     float height = [self.modelContent.servIntroduce boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width-90, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.5]} context:nil].size.height;
@@ -87,7 +87,7 @@
     self.labSerClass.text = self.modelContent.servLevel;
     self.labNumberSer.text = self.modelContent.usecount;
     self.labWorkYears.text = self.modelContent.servWorkyears;
-  
+    self.labPosition.text = [NSString stringWithFormat:@"职务:%@",self.modelContent.servPosition];
     //    self.ui_nianxianLabel.text = self.m_serviceInfoContent.servWorkyears;
     //    self.ui_yewuInfoLabel.text = self.m_serviceInfoContent.servIntroduce;
     

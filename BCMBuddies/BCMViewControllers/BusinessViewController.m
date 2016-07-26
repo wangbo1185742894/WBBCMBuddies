@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labSerTitleSecond;
 @property (weak, nonatomic) IBOutlet UIView *viewContentSerItem2;
 
+
 @end
 
 @implementation BusinessViewController
@@ -58,6 +59,8 @@
     
     // Do any additional setup after loading the view from its nib.
 }
+
+
 
 -(void)itemClick:(UIButton*)sender{
     NSLog(@"%ld",(long)sender.tag);

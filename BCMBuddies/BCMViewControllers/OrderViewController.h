@@ -9,24 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "BCMDefineFile.h"
 
-@interface OrderViewController : BaseViewController
+@interface OrderViewController : BaseViewController<NSURLConnectionDataDelegate>
 
 @property(strong,nonatomic) BCMContent *modelContent;
 @property (weak, nonatomic) IBOutlet UILabel *labSerName;
-- (IBAction)actionSelectTime:(UIButton *)sender;
+@property(nonatomic,strong) NSString *serName;
+
 - (IBAction)actionSure:(UIButton *)sender;
 - (IBAction)actionBack:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIView *viewSelectDate;
-- (IBAction)actionDateBack:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIButton *btnSelectDate;
 
-- (IBAction)actionDateSubmit:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIDatePicker *picDate;
-@property (weak, nonatomic) IBOutlet UIView *viewSuccess;
-@property (weak, nonatomic) IBOutlet UILabel *labSerSuccessName;
 
-@property (weak, nonatomic) IBOutlet UILabel *labSuccessInfo;
-
-- (IBAction)actionSuccessSure:(UIButton *)sender;
 
 @end

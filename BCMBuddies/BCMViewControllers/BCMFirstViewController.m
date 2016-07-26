@@ -31,6 +31,8 @@
 
 @implementation BCMFirstViewController
 
+
+
 //- (void)downloadFileWithOption1:(NSString*)requestURL
 //                      savedPath:(NSString*)savedPath
 //                downloadSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
@@ -61,7 +63,8 @@
     NSString *wd_extinfo = [wd_dic objectForKey:@"downloadFile"];
     
      AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
-    if ([wd_appDelegate.m_isTFI isEqualToString:@"YES"]) {
+    
+    if ([wd_appDelegate isTIFServerInfo]) {
         NSString *temp = [[wd_extinfo componentsSeparatedByString:@"appinfo_cache"] firstObject];
         wd_extinfo = [NSString stringWithFormat:@"%@%@",temp,@"extinfo.xml"];
     }
@@ -103,15 +106,88 @@
             wd_imagePath = [wd_dic objectForKey:@"UILaunchImageName"];
         }
     }
-    self.m_backImageView.image = [UIImage imageNamed:wd_imagePath];
+    self.m_backImageView.image = [UIImage imageNamed:@"default_image"];
 }
+
+-(void)changeCurBank:(id)sender
+{
+    
+    self.m_hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    self.m_hud.label.text = @"加载中...";
+    self.m_extFileArray = [[NSMutableArray alloc] init];
+    AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+    NSString *wd_string = [[NSString alloc] initWithFormat:@"xaonly%@",self.user.curBank.appid];
+    NSString *wd_password = md5(wd_string);
+    wd_string = [wd_string stringByAppendingString:@"1"];
+    NSString *wd_keyValue = md5(wd_string);
+    NSString *wd_appPath = [BCMToolLib getCacheFolderPath:[NSString stringWithFormat:@"%@",self.user.curBank.appid]];
+    NSString *wd_savePath = [wd_appPath stringByAppendingPathComponent:@"packageci.zip"];
+    NSFileManager *wd_fileManage = [NSFileManager defaultManager];
+    if([wd_fileManage fileExistsAtPath:wd_savePath] == YES)
+    {
+        [wd_fileManage removeItemAtPath:wd_appPath error:nil];
+        wd_appPath = [BCMToolLib getCacheFolderPath:[NSString stringWithFormat:@"%@",self.user.curBank.appid]];
+    }
+    //93ec7d0f72ac511b64719dc71c552f85
+    
+    NSString *wd_downloadPath;
+    if ([wd_appDelegate .m_isTFI isEqualToString:@"NO"]) {
+        wd_downloadPath = self.user.curBank.packageurl;
+    }else{
+        wd_downloadPath = [NSString stringWithFormat:@"%@%@/%@",wd_appDelegate.m_urlPath,wd_appDelegate.m_appId,@"packageci.zip"];
+        
+    }
+    
+    [BCMToolLib downloadFileWithOption:wd_downloadPath savedPath:wd_savePath
+                       downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                           ZipArchive *za = [[ZipArchive alloc] init];
+                           
+                           if ([za UnzipOpenFile:wd_savePath Password:wd_password]) {
+                               BOOL ret = [za UnzipFileTo:wd_appPath overWrite:YES];
+                               if (NO == ret){}
+                               [za UnzipCloseFile];
+                               NSString *xmlFilePath = [wd_appPath stringByAppendingPathComponent:@"packageci.xml"];
+                               NSData *data = [[NSData alloc]initWithContentsOfFile:xmlFilePath];
+                               
+                               NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                               NSXMLParser *wd_parser = [[NSXMLParser alloc]initWithData:data];
+                               wd_parser.delegate = self;
+                               self.m_isFirstParse = YES;
+                               if([wd_parser parse]){
+                               }else{
+                               }
+                           }
+                       } downloadFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                           [self.m_hud hideAnimated:YES];
+                           self.m_hud = nil;
+                           MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                           hud.mode = MBProgressHUDModeText;
+                           hud.label.text = @"下载失败";
+                           [hud hideAnimated:YES afterDelay:2.f];
+                       } progress:^(float progress) {
+                       }];
+    
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(changeCurBank:) name:@"NSNotificationChangeBack" object:nil];
     [self initBackImageView];
     self.m_hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     self.m_hud.label.text = @"加载中...";
     self.m_extFileArray = [[NSMutableArray alloc] init];
     AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+    
+//    if (self.user.curBank.packageurl!= nil) {
+//        wd_appDelegate.m_appId = [NSString stringWithFormat:@"%@", self.user.curBank.appid];
+//    }
+    
+   
     NSString *wd_string = [[NSString alloc] initWithFormat:@"xaonly%@",wd_appDelegate.m_appId];
     NSString *wd_password = md5(wd_string);
     wd_string = [wd_string stringByAppendingString:@"1"];
@@ -128,12 +204,21 @@
     
     NSString *wd_downloadPath;
     if ([wd_appDelegate .m_isTFI isEqualToString:@"NO"]) {
-          wd_downloadPath = [NSString stringWithFormat:@"%@%@%@%@%@",wd_appDelegate.m_urlPath,@"AppForClient/GetPackageCiV2?userid=1351&appid=",wd_appDelegate.m_appId,@"&timestamp=1&key=",wd_keyValue,nil];
-    }else{
+//          wd_downloadPath = [NSString stringWithFormat:@"%@%@%@%@%@",wd_appDelegate.m_urlPath,@"AppForClient/GetPackageCiV2?userid=&appid=",wd_appDelegate.m_appId,@"&timestamp=1&key=",wd_keyValue,nil];
+        
+         wd_downloadPath = [NSString stringWithFormat:@"%@AppForClient/GetPackageCiV2?userid=%@&appid=%@&timestamp=1&key=%@",wd_appDelegate.m_urlPath,self.userID,wd_appDelegate.m_appId,wd_keyValue];
+    }else {
         wd_downloadPath = [NSString stringWithFormat:@"%@%@/%@",wd_appDelegate.m_urlPath,wd_appDelegate.m_appId,@"packageci.zip"];
     
     }
-   
+    
+    
+    if (self.user.curBank.packageurl != nil) {
+        wd_downloadPath = [NSString stringWithFormat:@"http://%@",self.user.curBank.packageurl];
+    }
+    
+    
+    
     [BCMToolLib downloadFileWithOption:wd_downloadPath savedPath:wd_savePath
                  downloadSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
                      ZipArchive *za = [[ZipArchive alloc] init];
@@ -143,6 +228,26 @@
                          if (NO == ret){}
                          [za UnzipCloseFile];
                          NSString *xmlFilePath = [wd_appPath stringByAppendingPathComponent:@"packageci.xml"];
+                         
+                         NSHTTPURLResponse*dic = operation.response;
+                         
+                         NSDictionary *dic1 = dic.allHeaderFields;
+                         
+                         
+                         
+                         if ([wd_appDelegate .m_isTFI isEqualToString:@"YES"]) {
+                             
+                             
+                             
+                             NSUserDefaults *userDe = [NSUserDefaults standardUserDefaults];
+                             [userDe setValue:dic1[@"userID"] forKey:@"userID"];
+                             
+                         }
+                         
+                         
+                        
+                         
+                         
                          NSData *data = [[NSData alloc]initWithContentsOfFile:xmlFilePath];
                          
                          NSString *string = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
@@ -163,6 +268,7 @@
                  } progress:^(float progress) {
                  }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

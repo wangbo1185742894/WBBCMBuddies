@@ -12,11 +12,14 @@
 #import "BCMFinancingViewController.h"
 #import "BCMDefineFile.h"
 #import "LDImageView.h"
-@interface BCMInvestmentViewController ()
+#import "CellMoreProduct.h"
+#import "DetailViewController.h"
+@interface BCMInvestmentViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,assign)BOOL m_istue;
 
 @property (nonatomic,strong) IBOutlet UIView *ui_serverView;
+@property (weak, nonatomic) IBOutlet UITableView *tabMoreProduct;
 
 @property (nonatomic,strong) IBOutlet UIImageView *ui_xingImageView;
 @property (nonatomic,strong) IBOutlet LDImageView *ui_headImageView;
@@ -50,6 +53,8 @@
     if(folderID)
     {
         AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+        wd_appDelegate.m_appId =[NSString stringWithFormat:@"%@",self.user.curBank.appid] ;
+        wd_appDelegate.m_deptId = [NSString stringWithFormat:@"%@",self.user.curBank.deptid];
         NSManagedObjectContext *context = wd_appDelegate.managedObjectContext;
         NSEntityDescription *wd_entityDescription = [NSEntityDescription entityForName:@"BCMContent" inManagedObjectContext:context];
         NSFetchRequest *request = [NSFetchRequest new];
@@ -158,6 +163,12 @@
         });
 //    }
     
+self.title = @"投资理财";
+    
+    [self.tabMoreProduct registerClass:[CellMoreProduct class] forCellReuseIdentifier:@"CellMoreProduct"];
+    self.tabMoreProduct.delegate = self;
+    self.tabMoreProduct.dataSource = self;
+    [self.tabMoreProduct reloadData];
     UISwipeGestureRecognizer *recognizer;
     recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showSeverView:)];
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
@@ -242,5 +253,41 @@
 {
     NSString *wd_phoneString = [NSString stringWithFormat:@"tel://%@",self.serverContent.servPhone];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:wd_phoneString]];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+
+    return 4;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CellMoreProduct *cell = [tableView dequeueReusableCellWithIdentifier:@"CellMoreProduct"];
+    
+    cell.btnBack.image = [UIImage imageNamed:[NSString stringWithFormat:@"item%ld",(long)indexPath.row+1]];
+    
+    return cell;
+
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (indexPath.row == 1) {
+        return 150;
+    }else{
+        return 100;
+    }
+
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    DetailViewController *detailVC = [[DetailViewController alloc]init];
+    detailVC.index = indexPath.row%2+1;
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+
 }
 @end

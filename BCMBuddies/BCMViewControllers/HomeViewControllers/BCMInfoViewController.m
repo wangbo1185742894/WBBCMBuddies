@@ -8,6 +8,7 @@
 
 #import "BCMInfoViewController.h"
 #import "LDImageView.h"
+#import "OrderViewController.h"
 
 @interface BCMInfoViewController ()<UIWebViewDelegate>
 
@@ -62,9 +63,17 @@
         }
     }
 }
+- (IBAction)actionOrder:(UIButton *)sender {
+    OrderViewController *orderVC = [[OrderViewController alloc ]init];
+    orderVC.modelContent = self.serverContent;
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController pushViewController:orderVC animated:YES];
+}
 - (NSString *)getFolderInfoForType:(NSString *)type
 {
     AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+    wd_appDelegate.m_appId =[NSString stringWithFormat:@"%@",self.user.curBank.appid] ;
+    wd_appDelegate.m_deptId = [NSString stringWithFormat:@"%@",self.user.curBank.deptid];
     NSString *wd_appID = wd_appDelegate.m_appId;
     NSManagedObjectContext *context = wd_appDelegate.managedObjectContext;
     NSEntityDescription *wd_entityDescription = [NSEntityDescription entityForName:@"BCMFolder" inManagedObjectContext:context];
@@ -112,11 +121,8 @@
     self.ui_nameLabel.text = contentSever.servName;
     self.ui_zhiweiLabel.text = contentSever.servPosition;
     self.ui_yewuLabel.text = contentSever.servRespbusiness;
-    float wd_height = 202;
-    wd_height = wd_height + self.ui_yewuLabel.frame.size.height;
-    self.ui_severViewHeightConstraint.constant = wd_height;
-    self.ui_severViewBottomConstraint.constant = (self.ui_serverView.frame.size.height - 86)* -1;
-    self.ui_webBottomConstraint.constant = -17;
+ 
+    
     switch ([contentSever.servLevel intValue]) {
         case 1:
             self.ui_xingImageView.image = [UIImage imageNamed:@"xing_small_icon1.png"];
@@ -142,8 +148,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.m_istue = NO;
-    self.ui_webBottomConstraint.constant = 0;
-    self.ui_severViewBottomConstraint.constant = self.ui_serverView.frame.size.height * -1;
+   
     self.ui_serverView.hidden = YES;
     if(self.m_showServer == YES)
     {
@@ -151,6 +156,8 @@
             [self getCustomerServiceInfo:[self getFolderInfoForType:@"customer_service"]];
         });
     }
+    
+    
     self.ui_longdingView.hidden = YES;
     [self.ui_longdingView stopAnimating];
     self.ui_titleLabel.text = self.m_content.name;
@@ -158,38 +165,15 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.ui_webView loadRequest:request];
     
-    UISwipeGestureRecognizer *recognizer;
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(showSeverView:)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
-    [self.ui_serverView addGestureRecognizer:recognizer];
-    UISwipeGestureRecognizer *recognizer1;
-    recognizer1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hidenSeverView:)];
-    [recognizer1 setDirection:(UISwipeGestureRecognizerDirectionDown)];
-    [self.ui_serverView addGestureRecognizer:recognizer1];
+//    self.ui_webView.scalesPageToFit = self.isSize;
+
+
 }
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-- (void)showSeverView:(UISwipeGestureRecognizer *)swipeGesture
-{
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        float wd_height = 202;
-        wd_height = wd_height + self.ui_yewuLabel.frame.size.height;
-        self.ui_severViewHeightConstraint.constant = wd_height;
-        self.ui_severViewBottomConstraint.constant = 0;
-        [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        self.m_istue = YES;
-    }];
-}
-- (void)hidenSeverView:(UISwipeGestureRecognizer *)swipeGesture
-{
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        self.ui_severViewBottomConstraint.constant = (self.ui_serverView.frame.size.height - 86)* -1;
-        [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        self.m_istue = NO;
-    }];
 }
 
 - (IBAction)backButtonAction:(id)sender
@@ -197,31 +181,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)headButtonAction:(id)sender
-{
-    if(self.m_istue == NO)
-    {
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            float wd_height = 202;
-            wd_height = wd_height + self.ui_yewuLabel.frame.size.height;
-            self.ui_severViewHeightConstraint.constant = wd_height;
-            self.ui_severViewBottomConstraint.constant = 0;
-            [self.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-            self.m_istue = YES;
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            self.ui_severViewBottomConstraint.constant = (self.ui_serverView.frame.size.height - 86)* -1;
-            [self.view layoutIfNeeded];
-
-        } completion:^(BOOL finished) {
-            self.m_istue = NO;
-        }];
-    }
-}
 - (IBAction)callButtonAction:(id)sender
 {
     NSString *wd_phoneString = [NSString stringWithFormat:@"tel://%@",self.serverContent.servPhone];

@@ -88,6 +88,8 @@
     self.labPosition.text = [NSString stringWithFormat:@"(%@)",wd_servPosition];
     
     self.labWork.text = self.modelContent.servRespbusiness;
+    self.labWorkNumber.text = @"C10002";
+    self.imgPerson.image = [UIImage imageNamed:@"personImage"];
 //    self.ui_nianxianLabel.text = self.m_serviceInfoContent.servWorkyears;
 //    self.ui_yewuInfoLabel.text = self.m_serviceInfoContent.servIntroduce;
 

@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LoadData.h"
+#import "AppDelegate.h"
+#import "GlobalUser.h"
 @interface BaseViewController : UIViewController
 
+-(void)refreshDataArray;
+//@property(strong,nonatomic)NSMutableArray *dataArray;
+@property(nonatomic,strong)LoadData *loadData;
+@property(nonatomic,strong)AppDelegate*wd_delegate;
+@property (nonatomic,strong)GlobalUser *user;
+@property(nonatomic,strong)NSString*userID;
+@property(nonatomic,strong)NSTimer *timer;
+
+-(NSString*)userID;
 @end

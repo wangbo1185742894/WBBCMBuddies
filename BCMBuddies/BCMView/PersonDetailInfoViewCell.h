@@ -11,8 +11,13 @@
 #import "LDImageView.h"
 
 @interface PersonDetailInfoViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imgStar;
+@property (weak, nonatomic) IBOutlet UIImageView *imgPerson;
 @property (weak, nonatomic) IBOutlet LDImageView *imgIconTitle;
+@property (weak, nonatomic) IBOutlet UILabel *labWorkNumber;
+@property (weak, nonatomic) IBOutlet UIButton *btnServe;
 @property (weak, nonatomic) IBOutlet UILabel *labState;
+@property (weak, nonatomic) IBOutlet UIButton *btnQuestion;
 @property (weak, nonatomic) IBOutlet UILabel *labName;
 @property (weak, nonatomic) IBOutlet UILabel *labPosition;
 @property (weak, nonatomic) IBOutlet UILabel *labWork;

@@ -36,6 +36,8 @@
     if(folderID)
     {
         AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+        wd_appDelegate.m_appId =[NSString stringWithFormat:@"%@",self.user.curBank.appid] ;
+        wd_appDelegate.m_deptId = [NSString stringWithFormat:@"%@",self.user.curBank.deptid];
         NSManagedObjectContext *context = wd_appDelegate.managedObjectContext;
         NSEntityDescription *wd_entityDescription = [NSEntityDescription entityForName:@"BCMContent" inManagedObjectContext:context];
         NSFetchRequest *request = [NSFetchRequest new];

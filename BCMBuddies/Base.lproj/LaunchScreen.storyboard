@@ -17,16 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image.png" highlightedImage="default_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Po-hX-0M2">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Default.png" highlightedImage="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Po-hX-0M2">
+                                <rect key="frame" x="0.0" y="10" width="600" height="580"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4Po-hX-0M2" secondAttribute="bottom" id="PlC-QT-s2e"/>
-                            <constraint firstAttribute="trailing" secondItem="4Po-hX-0M2" secondAttribute="trailing" id="SRD-XZ-MYS"/>
-                            <constraint firstItem="4Po-hX-0M2" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="dTv-t9-Gvy"/>
-                            <constraint firstItem="4Po-hX-0M2" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="hhS-z1-otE"/>
+                            <constraint firstAttribute="trailing" secondItem="4Po-hX-0M2" secondAttribute="trailing" id="4qk-dP-tDw"/>
+                            <constraint firstItem="4Po-hX-0M2" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="De6-Zg-f8a"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4Po-hX-0M2" secondAttribute="bottom" id="H0e-xI-eum"/>
+                            <constraint firstItem="4Po-hX-0M2" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="NUg-ZG-uyn"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="default_image.png" width="320" height="480"/>
+        <image name="Default.png" width="320" height="480"/>
     </resources>
 </document>

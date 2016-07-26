@@ -46,6 +46,8 @@
     if(folderID)
     {
         AppDelegate *wd_appDelegate = [[UIApplication sharedApplication] delegate];
+        wd_appDelegate.m_appId =[NSString stringWithFormat:@"%@",self.user.curBank.appid] ;
+        wd_appDelegate.m_deptId = [NSString stringWithFormat:@"%@",self.user.curBank.deptid];
         NSManagedObjectContext *context = wd_appDelegate.managedObjectContext;
         NSEntityDescription *wd_entityDescription = [NSEntityDescription entityForName:@"BCMContent" inManagedObjectContext:context];
         NSFetchRequest *request = [NSFetchRequest new];
@@ -318,6 +320,7 @@
         NSString *wd_tfiUrlPath = [wd_appDelegate.m_urlPath stringByAppendingFormat:@"%@/%@/%@/",wd_appDelegate.m_appId,wd_content.folderId,wd_content.id];
         wd_picString = [wd_tfiUrlPath stringByAppendingString:wd_content.logo];
     }
+    
     else
     {
         wd_picString = [wd_appDelegate.m_urlPath stringByAppendingString:wd_content.logohosturl];

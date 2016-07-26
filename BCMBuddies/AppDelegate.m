@@ -29,6 +29,7 @@
 
 @interface AppDelegate ()
 @property(nonatomic,strong)MBProgressHUD *hud;
+
 @end
 
 @implementation AppDelegate
@@ -42,6 +43,7 @@
     size_t l;
     char * buf, * p;
     struct rt_msghdr_c * rt;
+    
     struct sockaddr * sa;
     struct sockaddr * sa_tab[RTAX_MAX];
     int i;
@@ -89,7 +91,8 @@
         }
         free(buf);
     }
-    return address;
+//    return address;
+    return @"192.168.1.2";
 }
 
 - (void)initURLPath:(NSString *)TFI
@@ -129,6 +132,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    NSUserDefaults *userDe = [NSUserDefaults standardUserDefaults];
+    [userDe setValue:@"1351" forKey:@"userID"];
     [self.window makeKeyAndVisible];
      [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}]; 
     self.window.backgroundColor = [UIColor whiteColor];
@@ -181,7 +187,19 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    
+    [self saveWaitInfo]
+    ;    [self saveContext];
+}
+
+-(void)saveWaitInfo{
+
+
+    GlobalUser *user = [GlobalUser globalUser];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:user.personNumber forKey:@"personNumber"];
+    [defaults setObject:user.callMeinfo forKey:@"callMeinfo"];
+    [defaults setObject:@(user.isOpenPhone) forKey:@"isOpenPhone"];
 }
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window
@@ -338,6 +356,7 @@
     self.hud.margin = 10.f;
     self.hud.removeFromSuperViewOnHide = YES;
     self.hud.label.text  = title;
+    self.hud.label.numberOfLines = 0;
     //    hud  不会阻断 用户交互
     self.hud.userInteractionEnabled = NO;
 }
