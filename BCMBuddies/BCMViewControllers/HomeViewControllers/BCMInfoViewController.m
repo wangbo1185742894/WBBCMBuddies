@@ -199,7 +199,7 @@
     self.ui_longdingView.hidden = YES;
     [self.ui_longdingView stopAnimating];
 }
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     self.ui_longdingView.hidden = YES;
     [self.ui_longdingView stopAnimating];

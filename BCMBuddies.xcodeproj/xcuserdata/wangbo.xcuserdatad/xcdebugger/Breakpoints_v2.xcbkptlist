@@ -778,7 +778,7 @@
             startingLineNumber = "51"
             endingLineNumber = "51"
             landmarkName = "-getCustomerServiceInfo:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -826,7 +826,7 @@
             startingLineNumber = "85"
             endingLineNumber = "85"
             landmarkName = "-getFolderInfoForType:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -842,7 +842,7 @@
             startingLineNumber = "168"
             endingLineNumber = "168"
             landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
